@@ -1,12 +1,11 @@
 import './App.css'
+import Header from "./components/Header.tsx";
 
 function App() {
 
     return (
         <>
-            <h1 className="text-4xl font-bold underline">
-                Hello tailwind!
-            </h1>
+            <Header/>
         </>
     )
 }
