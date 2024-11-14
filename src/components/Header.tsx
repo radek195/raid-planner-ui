@@ -1,19 +1,17 @@
-
-
 const Header = () => {
-    const myStyle = {
+    const headerStyle = {
         fontFamily: "Doto",
         fontWeight: "bold",
     }
 
     return (
-        <div>
-            <header
-                className='text-3xl text-left doto'
-                style={myStyle}>
-                raid planner
-            </header>
-        </div>
+        <header
+            className='text-4xl text-left fixed p-10 text-lime-400'
+            style={headerStyle}
+        >
+            raid planner
+        </header>
+
     );
 };
 
