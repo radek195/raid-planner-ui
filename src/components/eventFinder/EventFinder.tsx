@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { getEvent } from "../../api";
+import {getEvent, postEvent} from "../../api";
 import "./EventFinder.css";
 
 const EventFinder = () => {
@@ -18,8 +18,7 @@ const EventFinder = () => {
 
         try {
             const response = await getEvent(uuid);
-            console.log(response.data)
-            navigate("/events",  { state: { eventData: response.data } });
+            navigate("/events",  { state: {eventData: response.data} });
         } catch {
             setHasError(true);
             setErrorMessage("Event not found! Please check the UUID.");
@@ -31,8 +30,19 @@ const EventFinder = () => {
         }
     };
 
-    const handleCreateNewEvent = () => {
-        navigate("/create-event");
+    const handleCreateNewEvent = async () => {
+        try {
+            const response = await postEvent();
+            navigate("/events",  { state: { eventData: response.data } });
+        } catch {
+            setHasError(true);
+            setErrorMessage("Event not found! Please check the UUID.");
+
+            setTimeout(() => {
+                setHasError(false);
+                setErrorMessage(null);
+            }, 5000);
+        }
     };
 
     return (
